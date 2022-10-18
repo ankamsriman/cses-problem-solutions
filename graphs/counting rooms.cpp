@@ -55,10 +55,6 @@ void dfs(ll x, ll y)
         }
     }
 
-    if (check(x, y + 1) && !vis[x][y + 1])
-    {
-        dfs(x, y + 1);
-    }
 }
 void solve()
 {
