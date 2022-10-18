@@ -1,0 +1,113 @@
+//ANKAM SRIMAN
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+
+#define fi(i,a,b) for(long long int i = a; i<b; i++)
+#define fd(i,a,b) for(long long int i = a; i>=b; i--)
+#define vl(a,n) vector<ll>a(n)
+#define scarr(a) for(long long int i=0;i<a.size();i++) cin>>a[i]
+#define parr(a) for(long long int i=0;i<a.size();i++) cout<<a[i]<<" "
+#define ll long long
+#define ull unsigned long long int
+//transform(s.begin(), s.end(), s.begin(), ::tolower);
+
+#define spa " "
+#define nl cout<<"\n"
+#define pr(x) cout<<x<<"\n"
+#define prvt(a) for(long long int i=0;i<a.size();i++) cout<<a[i]<<" "
+#define star cout<<"*"
+#define cy cout<<"YES\n"
+#define cn cout<<"NO\n"
+#define pr(x) cout<<x<<"\n"
+#define f first
+#define s second
+#define ii pair<ll,ll>
+
+
+const ll mod =  1e9 + 7;
+// const ll N =  1000100;
+
+ll n, m;
+vector<ll>g[100010];
+ll vis[100010];
+vector<ll>c[10010];
+ll dup;
+void dfs(ll node)
+{
+    vis[node] = 1;
+    dup = node;
+
+    for (auto x : g[node])
+    {
+        if (!vis[x])
+        {
+            dfs(x);
+        }
+    }
+}
+void solve()
+{
+
+    // ll n, m;
+    cin >> n >> m;
+    ll id = 1;
+    fi(i, 0, m)
+    {
+        ll x, y;
+        cin >> x >> y;
+        g[x].push_back(y);
+        g[y].push_back(x);
+    }
+    vector<ll>ans;
+    fi(i, 1, n + 1)
+    {
+        if (!vis[i])
+        {
+            dfs(i);
+            // id++;
+            ans.push_back(dup);
+        }
+    }
+    cout << ans.size() - 1;
+    nl;
+    fi(i, 1, ans.size())
+    {
+        cout << ans[0] << " " << ans[i];
+        nl;
+    }
+
+
+
+
+
+}
+
+//string s;
+signed main()
+{
+    //py;
+    // fun();
+
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+
+    //pow2();
+
+    IOS;
+    //cout<<"*";
+    ll t = 1;
+    //cin >> t;
+    //getline(cin,s);
+
+    while (t--)
+    {
+        // q++;
+
+        solve();
+    }
+    return 0 ;
+}
