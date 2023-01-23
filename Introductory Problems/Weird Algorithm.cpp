@@ -49,26 +49,24 @@ void solve()
     }
 }   
  
-//string s;
+
  
 signed main()
 {
-    //py;
-    // fun(); 
- 
+
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
  
-    //pow2();
+
  
     IOS;
     //cout<<"*";
     ll t=1;
     // cin >> t; 
     //getline(cin,s);
-    // sieve_prime();
+
     while (t--)
     {
         // q++;
