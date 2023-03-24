@@ -42,38 +42,30 @@ void solve()
     cin>>n;
     vector<ll>a(n);
     scarr(a);
-    
+    ll head=-1,tail=0,ans=0;
     map<ll,ll>mp;
-    ll head=-1,tail=0;
-    ll ans=0;
-
     while(tail<n)
     {
-        while(head+1<n&&mp.find(a[head+1])==mp.end())
+        while(head+1<n&&mp[a[head+1]]==0)
         {
             head++;
             mp[a[head]]++;
+            ans=max(ans,head-tail+1);
         }
-
-        ans=max(ans,head-tail+1);
-        if(head>=tail)
+        // head++;
+        while(head<n&&tail<=head&&a[head+1]!=a[tail])
         {
             mp[a[tail]]--;
-            if(mp[a[tail]]==0)
-            {
-                mp.erase(a[tail]);
-            }
             tail++;
         }
-        else
-        {
-            tail++;
-            head=tail-1;
-            
-        }
+        mp[a[tail]]--;
+        tail++;
+
     }
+    
     cout<<ans;
     nl;
+
 }   
 
 
