@@ -1,5 +1,6 @@
 //ANKAM SRIMAN
 // https://cses.fi/problemset/task/1622
+// O(n! *(n+26))
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -29,25 +30,23 @@ const ll mod =  1e9 + 7;
 const ll N =  100000;
 
 ll n;
-string p;
-map<char,ll>mp;
+int freq[26];
 vector<string>ans;
-void rec(ll l)
+
+void rec(string s)
 {
-    if(l==n)
+    if((int)s.length()==n)
     {
-        ans.push_back(p);
+        ans.push_back(s);
         return;
     }
-    for(auto x:mp)
+    for(int i=0;i<26;i++)
     {
-        if(mp[x.f]>0)
+        if(freq[i]>0)
         {
-            p.push_back(x.f);
-            mp[x.f]--;
-            rec(l+1);
-            mp[x.f]++;
-            p.pop_back();
+            freq[i]--;
+            rec(s+char('a'+i));
+            freq[i]++;
         }
         
     }
@@ -59,8 +58,8 @@ void solve()
     cin>>s;
     n=s.length();
     
-    fi(i,0,n)mp[s[i]]++;
-    rec(0);
+    fi(i,0,n)freq[s[i]-'a']++;
+    rec("");
     cout<<ans.size();
     nl;
     fi(i,0,ans.size())
