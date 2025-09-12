@@ -36,31 +36,22 @@ void solve()
 {
     ll n;cin>>n;
     vt(a,n);scarr(a);
-    map<ll,ll>mp1;
-    map<ll,char>mp2;
+    vt(pos,n+1);
     fi(i,0,n)
     {
-        if(mp1[a[i]+1]==1)
-        {
-            mp2[a[i]]='l';;
-        }
-        else
-        {
-            mp2[a[i]]='r';
-        }
-        mp1[a[i]]=1;
+        pos[a[i]]=i;
     }
-    vector<ll>b=a;
-    sort(b.begin(),b.end());
     ll ans=1;
-    fi(i,0,n-1)
+    fi(i,1,n)
     {
-        if(mp2[b[i]]=='l')
+        if(pos[i+1]<pos[i])
         {
             ans++;
         }
     }
     pr(ans);
+
+
 }
 
 signed main()
