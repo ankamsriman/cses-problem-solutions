@@ -16,18 +16,18 @@ const int mod=1e9+7;
 
 // dp[n]: number of steps to make n =0
 // n=abc: dp[n]=min(dp[abc-a],dp[abc-b],dp[abc-c])
-// T=O(nlogn),Space=O(n)
+// T=O(n),Space=O(n)
 vector<ll>dp;
 
-set<int> dig(int n)
+vector<int> dig(int n)
 {
-    set<int>s;
+    vector<int>v;
     while(n)
     {
-        s.insert(n%10);
+        v.push_back(n%10);
         n/=10;
     }
-    return s;
+    return v;
 }
 
 ll rec(int n)
