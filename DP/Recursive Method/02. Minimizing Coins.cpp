@@ -8,42 +8,38 @@ using namespace std;
 #define ll long long int
 #define nl cout<<"\n";
 const int mod=1e9+7;
+const int inf=1e9;
 
-vector<int>a;
-ll dp[1000100];
+vector<int>coins;
+vector<int>dp;
+
 // dp[sum]->min no of coins with sum=sum
 // for all : dp[sum]=min(1+d[sum-a[i]])
-ll rec(int sum)
-{
-    if(sum==0)
-    {
-        return 0;
-    }
-    if(dp[sum]!=-1) return dp[sum];
-    ll ans=1e18;
+ll rec(int sum) {
+    if (sum == 0) return 0;           // base case
+    if (dp[sum] != -1) return dp[sum];
 
-    for(int x:a)
-    {
-        if(sum-x>=0)
-        {
-            ans=min(ans,1+rec(sum-x));
+    ll ans = inf;
+    for (int c : coins) {
+        if (sum - c >= 0) {
+            ans = min(ans, 1 + rec(sum - c));
         }
     }
-    return dp[sum]=ans;
-
+    return dp[sum] = ans;
 }
-void solve()
-{
-    int n,sum;cin>>n>>sum;
-    a.resize(n);
-    for(int i=0;i<n;i++) cin>>a[i];
-    memset(dp,-1,sizeof(dp));
-    ll ans=rec(sum);
-    if(ans==1e18) cout<<"-1";
-    else cout<<ans;
-    
 
+void solve() {
+    int n, x;
+    cin >> n >> x;
+    coins.resize(n);
+    for (int &c : coins) cin >> c;
+
+    dp.assign(x + 1, -1);
+    ll ans = rec(x);
+
+    cout << (ans >= inf ? -1 : ans) << "\n";
 }
+
 
 signed main()
 {
