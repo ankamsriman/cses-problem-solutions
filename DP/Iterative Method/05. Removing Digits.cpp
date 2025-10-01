@@ -19,18 +19,6 @@ const int mod=1e9+7;
 // T=O(n),Space=O(n)
 
 
-set<int> dig(int n)
-{
-    set<int>s;
-    while(n)
-    {
-        s.insert(n%10);
-        n/=10;
-    }
-    return s;
-}
-
-
 void solve() 
 {
     int n;cin>>n;
